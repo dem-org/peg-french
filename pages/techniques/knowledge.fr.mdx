@@ -1,4 +1,4 @@
-# Prompting par Connaissances Générées
+# Génération de connaissances par prompting
 
 import {Screenshot} from 'components/screenshot'
 import GENKNOW from '../../img/gen-knowledge.png'
@@ -9,9 +9,9 @@ Image Source: [Liu et al. 2022](https://arxiv.org/pdf/2110.08387.pdf)
 
 Les LLMs continuent d'être améliorés et l'une des techniques les plus répandues consiste à incorporer des connaissances ou des informations pour aider le modèle à faire des prédictions plus précises. 
 
-En utilisant une idée similaire, le modèle peut-il également être utilisé pour générer des connaissances avant de faire une prédiction ? C'est ce que tente de faire l'article de [Liu et al. 2022](https://arxiv.org/pdf/2110.08387.pdf) -- générer des connaissances à utiliser dans le cadre du prompt. En particulier, dans quelle mesure cela est-il utile pour des tâches telles que le raisonnement par le bon sens ?
+En utilisant une idée similaire, le modèle peut-il également être utilisé pour générer des connaissances avant de faire une prédiction ? C'est ce que tente de faire l'article de [Liu et al. 2022](https://arxiv.org/pdf/2110.08387.pdf) -- générer des connaissances à utiliser dans le cadre du prompt. Plus particulièrement, dans quelle mesure cela est-il utile pour des tâches telles que le raisonnement de bon sens ?
 
-Essayons un simple prompt :
+Essayons un prompt simple :
 
 *Prompt:*
 ```
@@ -23,8 +23,6 @@ Un des buts du golf consiste à essayer d'obtenir un total de points plus élev�
 Oui.
 ```
 
-Ce type d'erreur révèle les limites des LLMs dans l'exécution de tâches qui requièrent davantage de connaissances sur le monde. Comment améliorer cette situation grâce à la génération de connaissances ?
-
 Tout d'abord, nous générons quelques "connaissances" :
 
 *Prompt:*
@@ -33,7 +31,7 @@ Input : La Grèce est plus grande que le Mexique.
 Connaissance : La Grèce a une superficie d'environ 131 957 km², tandis que le Mexique a une superficie d'environ 1 964 375 km², ce qui fait que le Mexique est 1 389 % plus grand que la Grèce.
 
 Input : Les lunettes s'embuent toujours.
-Connaissances : La condensation se produit sur les verres de lunettes lorsque la vapeur d'eau provenant de votre sueur, de votre respiration et de l'humidité ambiante se dépose sur une surface froide, se refroidit et se transforme en minuscules gouttes de liquide, formant un film que vous voyez comme de la buée. Vos lentilles seront relativement froides par rapport à votre respiration, en particulier lorsque l'air extérieur est froid.
+Connaissances : La condensation se produit sur les verres de lunettes lorsque la vapeur d'eau provenant de votre sueur, de votre respiration et de l'humidité ambiante se dépose sur une surface froide, se refroidit et se transforme en minuscules gouttes de liquide, formant un film que vous percevez comme de la buée. Vos verres seront relativement froids par rapport à votre respiration, en particulier lorsque l'air extérieur est froid.
 
 Input : Un poisson est capable de penser.
 Connaissance : Les poissons sont plus intelligents qu'il n'y paraît. Dans de nombreux domaines, comme la mémoire, leurs capacités cognitives égalent ou dépassent celles des vertébrés "supérieurs", y compris les primates non humains. La mémoire à long terme des poissons leur permet de suivre des relations sociales complexes.
@@ -41,10 +39,10 @@ Connaissance : Les poissons sont plus intelligents qu'il n'y paraît. Dans de no
 Input : Le fait de fumer beaucoup de cigarettes au cours de sa vie a pour conséquence commune un risque plus élevé que la normale d'être atteint d'un cancer du poumon.
 Connaissances : Les personnes qui ont fumé en moyenne moins d'une cigarette par jour au cours de leur vie ont neuf fois plus de risques de mourir d'un cancer du poumon que les personnes qui n'ont jamais fumé. Parmi les personnes qui fumaient entre une et dix cigarettes par jour, le risque de mourir d'un cancer du poumon était près de 12 fois supérieur à celui des personnes n'ayant jamais fumé.
 
-Input : Un rocher est de la même taille qu'un caillou.
-Connaissances : Un caillou est un amas de roches dont la taille des particules est comprise entre 4 et 64 millimètres, selon l'échelle sédimentologique d'Udden-Wentworth. Les galets sont généralement considérés comme plus grands que les granules (2 à 4 millimètres de diamètre) et plus petits que les cailloux (64 à 256 millimètres de diamètre).
+Input : Un rocher est de la même taille qu'un galet.
+Connaissances : Un galet est un amas de roches dont la taille des particules est comprise entre 4 et 64 millimètres, selon l'échelle sédimentologique d'Udden-Wentworth. Les galets sont généralement considérés comme plus grands que les granules (2 à 4 millimètres de diamètre) et plus petits que les cailloux (64 à 256 millimètres de diamètre).
 
-Input : Une partie du golf consiste à essayer d'obtenir un total de points plus élevé que les autres.
+Input : Un des buts du golf consiste à essayer d'obtenir un total de points plus élevé que les autres.
 Connaissances :
 ```
 
