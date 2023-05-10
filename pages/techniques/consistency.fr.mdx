@@ -1,7 +1,7 @@
 # Self-Consistency
 
-L'une des techniques les plus avancées en matière de prompt engineering est sans doute la self-consistency (TODO). 
-Proposée by [Wang et al. (2022)](https://arxiv.org/pdf/2203.11171.pdf), la self-consistency vise à "remplacer le décodage naïf et avide utilisé dans le chain-of-thought prompting". L'idée est d'échantillonner des chemins de raisonnement multiples et diversifiés par le biais de few-shot CoT, et d'utiliser les générations pour sélectionner la réponse la plus cohérente. Cela permet d'améliorer les performances de la CoT prompting dans les tâches impliquant des raisonnements arithmétiques et de bon sens.
+L'une des techniques les plus avancées en matière de prompt engineering est sans doute la self-consistency (=cohérence). 
+Proposée by [Wang et al. (2022)](https://arxiv.org/pdf/2203.11171.pdf), la self-consistency vise à "remplacer la méthode de décodage simpliste et rapide qui est habituellement utilisé par l'IA dans le chain-of-thought (CoT) prompting". L'idée est d'échantillonner des chemins de raisonnement multiples et diversifiés par le biais de few-shot CoT, et d'utiliser les générations pour sélectionner la réponse la plus cohérente. Cela permet d'améliorer les performances de la CoT prompting dans les tâches impliquant des raisonnements arithmétiques et de bon sens.
 
 Essayons l'exemple suivant pour le raisonnement arithmétique :
 
@@ -16,7 +16,7 @@ j'ai 70 ans, quel âge a ma sœur ?
 35
 ```
 
-L'output est erroné ! Comment pouvons-nous l'améliorer grâce à la self-consistency ? Essayons-le. Nous utiliserons les exemples few-shot de Wang et al. 2022 (Tableau 17) :
+L'output est erroné ! Comment pouvons-nous l'améliorer grâce à la self-consistency ? Essayons. Nous utiliserons les exemples few-shot de Wang et al. 2022 (Tableau 17) :
 
 *Prompt:*
 ```
