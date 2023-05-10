@@ -1,8 +1,8 @@
 # Exemples de prompts
 
-Dans la section précédente, nous avons présenté et donné des exemples de base sur la façon de prompter les LLMs. 
+Dans la section précédente, nous avons présenté et donné des exemples simples sur la façon de prompter les LLMs. 
 
-Dans cette section, nous fournirons plus d'exemples de la façon dont les prompts sont utilisés pour accomplir différentes tâches et nous introduirons des concepts clés en cours de route. Souvent, la meilleure façon d'apprendre des concepts est de les illustrer par des exemples. Nous présentons ci-dessous quelques exemples de la manière dont des prompts bien conçus peuvent être utilisés pour effectuer différents types de tâches.
+Dans cette section, nous fournirons de nouveaux exemples d'utilisations de prompts et nous introduirons des concepts clés en cours de route. Souvent, la meilleure façon d'apprendre des concepts est de les illustrer par des exemples. Vous trouverez ci-dessous quelques exemples de la manière dont des prompts bien conçus peuvent être utilisés pour effectuer différents types de tâches.
 
 Sujets :
 - [Résumés de texte](#résumés-de-texte)
@@ -16,7 +16,7 @@ Sujets :
 ---
 
 ## Résumés de texte
-L'une des tâches standard de la génération de langage naturel est le résumé de texte. Le résumé de texte peut inclure beaucoup de saveurs et de domaines différents. En fait, l'une des applications les plus prometteuses des modèles de langage est la capacité à résumer des articles et des concepts en des résumés rapides et faciles à lire. Essayons une tâche de résumé de base à l'aide de prompts.
+L'une des tâches standard des modèles de génération de langage est le résumé de texte. Le résumé de texte peut être utilisé dans beaucoup de domaines différents comme pour résumer des articles et des concepts résumés rapides et faciles à lire. Essayons une tâche simple à l'aide de prompts.
 
 Supposons que je souhaite en savoir plus sur les antibiotiques, je pourrais essayer un prompt comme celui-ci :
 
@@ -50,7 +50,7 @@ Sans prêter trop d'attention à l'exactitude du résultat ci-dessus, que nous a
 
 ---
 ## Extraction d'informations
-Bien que les modèles de langage soient formés pour générer du langage naturel et effectuer des tâches connexes, ils sont également capables d'effectuer des classifications et une série d'autres tâches de traitement du langage naturel/natural language processing (NLP) (TODO). 
+Bien que les modèles de langage soient entraînés pour générer du langage naturel et effectuer des tâches connexes, ils sont également capables d'effectuer des classifications et divers traitements des éléments d'un texte.
 
 Voici un exemple de prompt qui extrait des informations d'un paragraphe donné.
 
@@ -100,7 +100,7 @@ Contexte obtenu à partir de [Nature](https://www.nature.com/articles/d41586-023
 ---
 
 ## Classification de textes
-Jusqu'à présent, nous avons utilisé des instructions simples pour effectuer une tâche. En tant qu'ingénieur de prompt (TODO), vous devrez vous améliorer pour fournir de meilleurs prompts. Mais ce n'est pas tout ! Vous constaterez également que pour des cas d'utilisation plus difficiles, il ne suffit pas de fournir des instructions. C'est là que vous devrez réfléchir davantage au contexte et aux différents éléments que vous pouvez utiliser dans un prompt. D'autres éléments que vous pouvez fournir sont les `données d'entrée` ou les `exemples`. 
+Jusqu'à présent, nous avons utilisé des instructions simples pour effectuer des tâches simples. En tant que prompt engineer, vous devrez vous améliorer pour fournir de meilleurs prompts. Mais ce n'est pas tout ! Vous constaterez également que pour des cas d'utilisation plus difficiles, il ne suffit pas de fournir des instructions. C'est là que vous devrez réfléchir davantage au contexte et aux différents éléments que vous pouvez utiliser dans un prompt. D'autres éléments que vous pouvez fournir sont les `données d'entrée` ou les `exemples`. 
 
 Essayons de démontrer ceci en fournissant un exemple de classification de texte.
 
@@ -117,7 +117,7 @@ Sentiment :
 Neutre
 ```
 
-Nous avons donné l'instruction de classer le texte et le modèle a répondu "Neutre", ce qui est correct. Il n'y a rien de mal à cela, mais disons que ce dont nous avons vraiment besoin, c'est que le modèle donne l'étiquette dans le format exact que nous voulons. Ainsi, au lieu de `Neutral`, nous voulons qu'il renvoie `neutral`. Comment y parvenir ? Il y a plusieurs façons de le faire. Nous nous intéressons ici à la spécificité, donc plus nous pouvons fournir d'informations au prompt, meilleurs seront les résultats. Nous pouvons essayer de fournir des exemples pour spécifier le comportement correct. Essayons à nouveau :
+Nous avons donné l'instruction de classer le texte et le modèle a répondu "Neutre", ce qui est correct. Il n'y a rien de mal à cela, mais disons que ce dont nous avons vraiment besoin, c'est que le modèle donne l'étiquette dans le format exact que nous voulons. Ainsi, au lieu de `Neutre`, nous voulons qu'il renvoie `neutre`. Comment y parvenir ? Il y a plusieurs façons de le faire. Nous nous intéressons ici à la spécificité, donc plus nous pouvons fournir d'informations au prompt, meilleurs seront les résultats. Nous pouvons essayer de fournir des exemples pour spécifier le comportement correct. Essayons à nouveau :
 
 *Prompt:*
 ```
@@ -135,7 +135,7 @@ Sentiment :
 neutre
 ```
 
-C'est parfait ! Cette fois-ci, le modèle a retourné `neutral`, ce qui est l'étiquette spécifique que je recherchais. Il semble que l'exemple fourni dans le prompt ait aidé le modèle à être spécifique dans sa sortie/son output (TODO). Pour comprendre pourquoi il est parfois important d'être précis, regardez cet exemple et repérez le problème :
+C'est parfait ! Cette fois-ci, le modèle a retourné `neutre`, ce qui est l'étiquette spécifique que je recherchais. Il semble que l'exemple fourni dans le prompt ait aidé le modèle à être spécifique dans son output. Pour comprendre pourquoi il est parfois important d'être précis, regardez cet exemple et repérez le problème :
 
 *Prompt:*
 ```
@@ -155,9 +155,9 @@ Quel est le problème ?
 ---
 
 ## Conversation
-L'une des choses les plus intéressantes que vous puissiez réaliser avec l'ingénierie de prompt/prompt engineering (TODO) est d'indiquer au système LLM comment se comporter, son intention et son identité. Ceci est particulièrement utile lorsque vous construisez des systèmes conversationnels comme les chatbots du service client.
+L'une des choses les plus intéressantes que vous puissiez réaliser avec le prompt engineering est d'indiquer au système LLM comment se comporter, son intention et son identité. Ceci est particulièrement utile lorsque vous construisez des systèmes conversationnels comme les chatbots du service client.
 
-Par exemple, créons un système conversationnel capable de générer des réponses plus techniques et scientifiques aux questions. Remarquez que nous lui indiquons explicitement comment se comporter par le biais de l'instruction. C'est ce que l'on appelle parfois "l'incitation au rôle/role prompting" (TODO).
+Par exemple, créons un système conversationnel capable de générer des réponses plus techniques et scientifiques aux questions. Remarquez que nous lui indiquons explicitement comment se comporter par le biais de l'instruction. C'est ce que l'on appelle parfois le "role prompting".
 
 *Prompt:*
 ```
@@ -191,12 +191,12 @@ L'IA :
 Bien sûr ! Les trous noirs sont créés lorsqu'une étoile très massive manque de carburant et s'effondre sur elle-même. La gravité de l'étoile est si forte que rien, pas même la lumière, ne peut échapper à son attraction. Cela crée un point dans l'espace-temps avec une force gravitationnelle intense, appelé trou noir.
 ```
 
-Je pense que nous avons fait des progrès. Vous pouvez continuer à l'améliorer. Je suis sûr que si vous ajoutez d'autres exemples, vous obtiendrez de meilleurs résultats. 
+Je pense que nous avons fait des progrès. Vous pouvez continuer à améliorer vos prompts. Je suis sûr que si vous essayez d'autres exemples, vous obtiendrez de meilleurs résultats. 
 
 ---
 
 ## Génération de code
-Une application où les LLMs sont très efficaces est la génération de code. Copilot en est un excellent exemple. Il existe un grand nombre de tâches de génération de code que vous pouvez effectuer avec des prompts intelligents. Voyons quelques exemples ci-dessous.
+Un domaine où les LLMs sont très efficaces est la génération de code. "Copilot" en est un excellent exemple. Il existe un grand nombre de tâches de génération de code que vous pouvez effectuer avec des prompts intelligents. Voyons quelques exemples ci-dessous.
 
 Tout d'abord, essayons un programme simple qui accueille l'utilisateur.
 
@@ -233,12 +233,11 @@ FROM students
 WHERE DepartmentId IN (SELECT DepartmentId FROM departments WHERE DepartmentName = 'Computer Science');
 ```
 
-C'est très impressionnant. Dans ce cas, nous avons fourni des données sur le schéma de la base de données et nous lui avons demandé de générer une requête MySQL valide. 
+C'est très impressionnant. Dans ce cas, nous avons fourni des informations sur le schéma de la base de données et nous lui avons demandé de générer une requête MySQL valide. 
 
 ---
 
 ## Raisonnement
-
 L'une des tâches les plus difficiles pour un LLM aujourd'hui est peut-être celle qui nécessite une certaine forme de raisonnement. Le raisonnement est l'un des domaines qui me passionne le plus en raison des types d'applications complexes qui peuvent émerger des LLMs.
 
 Des améliorations ont été apportées aux tâches impliquant des capacités mathématiques. Cela dit, il est important de noter que les LLMs actuels ont du mal à effectuer des tâches de raisonnement, ce qui nécessite des techniques de prompt engineering encore plus avancées. Nous aborderons ces techniques avancées dans le prochain guide. Pour l'instant, nous allons couvrir quelques exemples de base pour montrer les capacités arithmétiques.
