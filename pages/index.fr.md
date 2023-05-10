@@ -1,9 +1,9 @@
-# Prompt Engineering Guide
+# Guide du prompt engineering
 
-Prompt engineering is a relatively new discipline for developing and optimizing prompts to efficiently use language models (LMs) for a wide variety of applications and research topics. Prompt engineering skills help to better understand the capabilities and limitations of large language models (LLMs).
+Le prompt engineering est une discipline nouvelle qui permet de développer et d'optimiser les prompts afin d'utiliser efficacement les modèles de langage (LMs) pour une grande variété d'applications et de sujets de recherche. Les compétences en prompt engineering permettent de mieux comprendre les capacités et les limites des grands modèles de langage (LLMs).
 
-Researchers use prompt engineering to improve the capacity of LLMs on a wide range of common and complex tasks such as question answering and arithmetic reasoning. Developers use prompt engineering to design robust and effective prompting techniques that interface with LLMs and other tools.
+Les chercheurs utilisent le prompt engineering pour améliorer la capacité des LLMs dans un large éventail de tâches courantes et complexes telles que la réponse à des questions et le raisonnement arithmétique. Les développeurs utilisent le prompt engineering pour concevoir des techniques de prompts robustes et efficaces qui interagissent avec les LLMs et d'autres outils.
 
-Prompt engineering is not just about designing and developing prompts. It encompasses a wide range of skills and techniques that are useful for interacting and developing with LLMs. It's an important skill to interface, build with, and understand capabilities of LLMs. You can use prompt engineering to improve safety of LLMs and build new capabilities like augmenting LLMs with domain knowledge and external tools.
+Le prompt engineering ne se limite pas à la conception et au développement de prompts. Elle englobe un large éventail de compétences et de techniques utiles pour interagir et se développer avec les LLMs. Il s'agit d'une compétence importante pour interagir, construire et comprendre les capacités des LLMs. Vous pouvez l'utiliser pour améliorer la sécurité des LLMs et construire de nouvelles capacités telles que l'augmentation des LLMs avec la connaissance du domaine et des outils externes.
 
-Motivated by the high interest in developing with LLMs, we have created this new prompt engineering guide that contains all the latest papers, learning guides, models, lectures, references, new LLM capabilities, and tools related to prompt engineering.
+Motivés par le grand intérêt pour le développement avec les LLMs, nous avons créé ce nouveau guide de prompt engineering qui contient tous les derniers articles, guides d'apprentissage, modèles, conférences, références, nouvelles capacités LLMs et outils liés à cette discipline.

@@ -1,114 +1,109 @@
-# Basics of Prompting
+# Les bases du prompting
 
-## Basic Prompts
+## Prompts basiques
 
-You can achieve a lot with simple prompts, but the quality of results depends on how much information you provide it and how well-crafted it is. A prompt can contain information like the *instruction* or *question* you are passing to the model and including other details such as *context*, *inputs*, or *examples*. You can use these elements to instruct the model better and as a result get better results.
+Vous pouvez obtenir de nombreux résultats avec de simples prompts, mais la qualité des résultats dépend de la quantité d'informations que vous fournissez et de la qualité de leur rédaction. Un prompt peut contenir des informations telles que l'*instruction* ou la *question* que vous transmettez au modèle, ainsi que d'autres détails tels que le *contexte*, les *inputs* [TO DO] ou les *exemples*. Vous pouvez utiliser ces éléments pour mieux instruire le modèle [A REVOIR] et obtenir de meilleurs résultats.
 
-Let's get started by going over a basic example of a simple prompt:
-
-*Prompt*
-```
-The sky is
-```
-
-*Output:*
-```
-blue
-
-The sky is blue on a clear day. On a cloudy day, the sky may be gray or white.
-```
-
-As you can see, the language model outputs a continuation of strings that make sense give the context `"The sky is"`. The output might be unexpected or far from the task we want to accomplish. 
-
-This basic example also highlights the necessity to provide more context or instructions on what specifically we want to achieve.
-
-Let's try to improve it a bit:
+Commençons par un exemple de base d'un simple prompt :
 
 *Prompt:*
 ```
-Complete the sentence: 
+Le ciel est
+```
 
-The sky is
+*Output:*
+```
+bleu
+
+Le ciel est bleu par temps clair. Par temps nuageux, le ciel peut être gris ou blanc.
+```
+
+Comme vous pouvez le constater, le modèle de langage produit une séquence de chaînes de caractères qui ont un sens dans le contexte "Le ciel est". Le résultat peut être inattendu ou éloigné de la tâche que nous voulons accomplir. 
+
+Cet exemple de base souligne également la nécessité de fournir davantage de contexte ou d'instructions sur ce que nous voulons accomplir.
+
+Essayons de l'améliorer un peu :
+
+*Prompt:*
+```
+Complétez la phrase : 
+
+Le ciel est
 ```
 
 *Output:*
 
 ```
-so  beautiful today.
+si beau aujourd'hui.
 ```
 
-Is that better? Well, we told the model to complete the sentence so the result looks a lot better as it follows exactly what we told it to do ("complete the sentence"). This approach of designing optimal prompts to instruct the model to perform a task is what's referred to as **prompt engineering**. 
+Est-ce mieux ? Nous avons demandé au modèle de compléter la phrase, le résultat semble donc bien meilleur puisqu'il suit exactement ce que nous lui avons demandé de faire ("compléter la phrase"). Cette approche, qui consiste à concevoir des prompts optimaux pour demander au modèle d'effectuer une tâche, est appelée **ingénierie des prompts**. 
 
-The example above is a basic illustration of what's possible with LLMs today. Today's LLMs are able to perform all kinds of advanced tasks that range from text summarization to mathematical reasoning to code generation.
+L'exemple ci-dessus est une illustration de base de ce qui est possible avec les LLMs aujourd'hui. Les LLMs d'aujourd'hui sont capables d'effectuer toutes sortes de tâches avancées allant du résumé de texte au raisonnement mathématique en passant par la génération de code.
 
-## Prompt Formatting
+## Formatage de prompt
 
-We have tried a very simple prompt above. A standard prompt has the following format:
+Nous avons essayé un prompt très simple ci-dessus. Un prompt standard a le format suivant :
 
 ```
-<Question>?
+<Question> ?
 ```
 
-or 
+ou 
 
 ```
 <Instruction>
 ```
  
-This can be formatted into a question answering (QA) format, which is standard in a lot of QA datasets, as follows:
+Ceci peut être formaté dans un format Question-Réponse (QR), qui est standard dans de nombreux ensembles de données QR, comme suit :
 
 ```
-Q: <Question>?
-A: 
+Q : <Question> ?
+R : 
 ```
 
-When prompting like the above, it's also referred to as *zero-shot prompting*, i.e., you are directly prompting the model for a response without any examples or demonstrations about the task you want it to achieve. Some large language models do have the ability to perform zero-shot prompting but it depends on the complexity and knowledge of the task at hand. 
+Lorsqu'un prompt est sollicité de la manière décrite ci-dessus, on parle également de "zero-shot prompting"[TO DO?], ce qui signifie que vous demandez directement au prompt de répondre sans exemples ou démonstrations de la tâche que vous souhaitez qu'il effectue. Certains LLMs sont capables d'effectuer des "zero-shot prompting", mais cela dépend de la complexité et de la connaissance de la tâche à accomplir. 
 
-Given the standard format above, one popular and effective technique to prompting is referred to as *few-shot prompting* where we provide exemplars (i.e., demonstrations). Few-shot prompts can be formatted as follows:
+Compte tenu du format standard mentionné ci-dessus, une technique populaire et efficace est appelée "few-shot prompting",[TO DO?] qui consiste à fournir des exemples (c'est-à-dire des démonstrations). Les "few-shot prompting" [TO DO?] peuvent être formulées comme suit :
 
 ```
-<Question>?
-<Answer>
-
-<Question>?
-<Answer>
-
-<Question>?
-<Answer>
-
-<Question>?
+<Question> ?
+<Réponse>
+<Question> ?
+<Réponse>
+<Question> ?
+<Réponse>
+<Question> ?
 
 ```
 
-The QA format version would look like this:
+La version au format QR ressemblerait à ceci :
 
 ```
-Q: <Question>?
-A: <Answer>
-
-Q: <Question>?
-A: <Answer>
-
-Q: <Question>?
-A: <Answer>
-
-Q: <Question>?
-A:
+Q : <Question> ?
+R : <Réponse>
+Q : <Question> ?
+R : <Réponse>
+Q : <Question> ?
+R : <Réponse>
+Q : <Question> ?
+R :
 ```
 
-Keep in mind that it's not required to use QA format. The prompt format depends on the task at hand. For instance, you can perform a simple classification task and give exemplars that demonstrate the task as follows:
+N'oubliez pas qu'il n'est pas obligatoire d'utiliser le format QR. Le format du prompt dépend de la tâche à accomplir. Par exemple, vous pouvez effectuer une simple tâche de classification et donner des exemples qui illustrent la tâche comme suit :
 
 *Prompt:*
 ```
-This is awesome! // Positive
-This is bad! // Negative
-Wow that movie was rad! // Positive
-What a horrible show! //
+
+C'est génial ! // Positif
+C'est mauvais ! // Négatif
+Wow ce film était génial ! // Positif
+Quel spectacle horrible ! //
 ```
 
 *Output:*
 ```
-Negative
+Négatif
 ```
 
-Few-shot prompts enable in-context learning which is the ability of language models to learn tasks given a few demonstrations.
+Les messages courts permettent l'apprentissage en contexte, c'est-à-dire la capacité des modèles de langage à apprendre des tâches à partir de quelques démonstrations.

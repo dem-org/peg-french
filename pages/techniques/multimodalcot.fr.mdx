@@ -1,0 +1,15 @@
+# Prompting par Chain-of-Thought multimodal
+
+import { Callout, FileTree } from 'nextra-theme-docs'
+import {Screenshot} from 'components/screenshot'
+import MCOT from '../../img/multimodal-cot.png'
+
+[Zhang et al. (2023)](https://arxiv.org/abs/2302.00923) ont récemment proposé une méthode de prompting basée sur une CoT (Chain-of-Thougt = chaîne de pensée) multimodale. La CoT traditionnelle se focalise sur la modalité linguistique. En revanche, la CoT multimodale intègre le texte et l'image dans un cadre qui suit deux étapes. La première étape consiste à générer un raisonnement basé sur des informations multimodales. Elle est suivie par la deuxième phase, l'inférence de la réponse, au cours de laquelle le raisonnement généré est utilisé pour déterminer la réponse appropriée.
+
+Le modèle CoT multimodal (1B) obtient de meilleurs résultats que GPT-3.5 dans le benchmark ScienceQA.
+
+<Screenshot src={MCOT} alt="MCOT" />
+Source de l'image: [Zhang et al. (2023)](https://arxiv.org/abs/2302.00923)
+
+Pour en savoir plus :
+- [Language Is Not All You Need: Aligning Perception with Language Models](https://arxiv.org/abs/2302.14045) (Feb 2023)

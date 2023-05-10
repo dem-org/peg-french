@@ -1,227 +1,228 @@
-# Examples of Prompts
+# Exemples de prompts
 
-In the previous section, we introduced and gave a basic examples of how to prompt LLMs. 
+Dans la section précédente, nous avons présenté et donné des exemples de base sur la façon de prompter les LLMs. 
 
-In this section, we will provide more examples of how prompts are used to achieve different tasks and introduce key concepts along the way. Often, the best way to learn concepts is by going through examples. Below we cover a few examples of how well-crafted prompts can be used to perform different types of tasks.
+Dans cette section, nous fournirons plus d'exemples de la façon dont les prompts sont utilisés pour accomplir différentes tâches et nous introduirons des concepts clés en cours de route. Souvent, la meilleure façon d'apprendre des concepts est de les illustrer par des exemples. Nous présentons ci-dessous quelques exemples de la manière dont des prompts bien conçus peuvent être utilisés pour effectuer différents types de tâches.
 
-Topics:
-- [Text Summarization](#text-summarization)
-- [Information Extraction](#information-extraction)
-- [Question Answering](#question-answering)
-- [Text Classification](#text-classification)
+Sujets :
+- [Résumés de texte](#résumés-de-texte)
+- [Extraction d'informations](#extraction-dinformations)
+- [Réponse aux questions](#réponse-aux-questions)
+- [Classification de textes](#classification-de-textes)
 - [Conversation](#conversation)
-- [Code Generation](#code-generation)
-- [Reasoning](#reasoning)
+- [Génération de code](#génération-de-code)
+- [Raisonnement](#raisonnement)
 
 ---
 
-## Text Summarization
-One of the standard tasks in natural language generation is text summarization. Text summarization can include many different flavors and domains. In fact, one of the most promising applications of language models is the ability to summarize articles and concepts into quick and easy-to-read summaries. Let's try a basic summarization task using prompts.
+## Résumés de texte
+L'une des tâches standard de la génération de langage naturel est le résumé de texte. Le résumé de texte peut inclure beaucoup de saveurs et de domaines différents. En fait, l'une des applications les plus prometteuses des modèles de langage est la capacité à résumer des articles et des concepts en des résumés rapides et faciles à lire. Essayons une tâche de résumé de base à l'aide de prompts.
 
-Let's say I am interested to learn about antibiotics, I could try a prompt like this:
+Supposons que je souhaite en savoir plus sur les antibiotiques, je pourrais essayer un prompt comme celui-ci :
 
 *Prompt:*
 ```
-Explain antibiotics
+Expliquez les antibiotiques
 
-A:
+A :
 ```
 
 *Output:*
 ```
-Antibiotics are a type of medication used to treat bacterial infections. They work by either killing the bacteria or preventing them from reproducing, allowing the body’s immune system to fight off the infection. Antibiotics are usually taken orally in the form of pills, capsules, or liquid solutions, or sometimes administered intravenously. They are not effective against viral infections, and using them inappropriately can lead to antibiotic resistance.
+Les antibiotiques sont un type de médicament utilisé pour traiter les infections bactériennes. Ils agissent en tuant les bactéries ou en les empêchant de se reproduire, ce qui permet au système immunitaire de l'organisme de combattre l'infection. Les antibiotiques sont généralement pris par voie orale sous forme de comprimés, de gélules ou de solutions liquides, ou parfois administrés par voie intraveineuse. Ils ne sont pas efficaces contre les infections virales et leur utilisation inappropriée peut entraîner une résistance aux antibiotiques.
 ```
 
-The "A:" is an explicit prompt format that's used in question answering. I used it here to tell the model that there is an expected further. In this example, it's not clear how this is useful vs not using it but we will leave it that for later examples. Let's just assume that this is too much information and want to summarize it further. In fact, we can instruct the model to summarize into one sentence like so:
+Le "A :" est un format de prompt explicite utilisé dans les réponses aux questions. Je l'ai utilisé ici pour indiquer au modèle qu'une autre réponse est attendue. Dans cet exemple, l'utilité de ce format par rapport à sa non-utilisation n'est pas évidente, mais nous nous en tiendrons là pour les exemples ultérieurs. Supposons simplement qu'il y a trop d'informations et que nous voulons les résumer davantage. En fait, nous pouvons demander au modèle de résumer en une seule phrase comme suit :
 
 *Prompt:*
 ```
-Antibiotics are a type of medication used to treat bacterial infections. They work by either killing the bacteria or preventing them from reproducing, allowing the body’s immune system to fight off the infection. Antibiotics are usually taken orally in the form of pills, capsules, or liquid solutions, or sometimes administered intravenously. They are not effective against viral infections, and using them inappropriately can lead to antibiotic resistance.
+Les antibiotiques sont un type de médicament utilisé pour traiter les infections bactériennes. Ils agissent en tuant les bactéries ou en les empêchant de se reproduire, ce qui permet au système immunitaire de l'organisme de combattre l'infection. Les antibiotiques sont généralement pris par voie orale sous forme de comprimés, de gélules ou de solutions liquides, ou parfois administrés par voie intraveineuse. Ils ne sont pas efficaces contre les infections virales et leur utilisation inappropriée peut entraîner une résistance aux antibiotiques.
 
-Explain the above in one sentence:
+Expliquez ce qui précède en une phrase :
 ```
 
 *Output:*
 ```
-Antibiotics are medications used to treat bacterial infections by either killing the bacteria or stopping them from reproducing, but they are not effective against viruses and overuse can lead to antibiotic resistance.
+Les antibiotiques sont des médicaments utilisés pour traiter les infections bactériennes en tuant les bactéries ou en les empêchant de se reproduire, mais ils ne sont pas efficaces contre les virus et leur utilisation excessive peut entraîner une résistance aux antibiotiques.
 ```
 
-Without paying too much attention to the accuracy of the output above, which is something we will touch on in a later guide, the model tried to summarize the paragraph in one sentence. You can get clever with the instructions but we will leave that for a later chapter. Feel free to pause here and experiment to see if you get better results.
+Sans prêter trop d'attention à l'exactitude du résultat ci-dessus, que nous aborderons dans un guide ultérieur, le modèle a tenté de résumer le paragraphe en une seule phrase. Vous pouvez faire preuve d'ingéniosité avec les instructions, mais nous laisserons cela pour un chapitre ultérieur. N'hésitez pas à vous arrêter ici et à expérimenter pour voir si vous obtenez de meilleurs résultats.
 
 ---
-## Information Extraction
-While language models are trained to perform natural language generation and related tasks, it's also very capable of performing classification and a range of other natural language processing (NLP) tasks. 
+## Extraction d'informations
+Bien que les modèles de langage soient formés pour générer du langage naturel et effectuer des tâches connexes, ils sont également capables d'effectuer des classifications et une série d'autres tâches de traitement du langage naturel/natural language processing (NLP) (TODO). 
 
-Here is an example of a prompt that extracts information from a given paragraph.
-
-*Prompt:*
-```
-Author-contribution statements and acknowledgements in research papers should state clearly and specifically whether, and to what extent, the authors used AI technologies such as ChatGPT in the preparation of their manuscript and analysis. They should also indicate which LLMs were used. This will alert editors and reviewers to scrutinize manuscripts more carefully for potential biases, inaccuracies and improper source crediting. Likewise, scientific journals should be transparent about their use of LLMs, for example when selecting submitted manuscripts.
-
-Mention the large language model based product mentioned in the paragraph above:
-```
-
-*Output:*
-```
-The large language model based product mentioned in the paragraph above is ChatGPT.
-```
-
-There are many ways we can improve the results above, but this is already very useful.
-
-By now it should be obvious that you can ask the model to perform different tasks by simply instructing it what to do. That's a powerful capability that AI product developers are already using to build powerful products and experiences.
-
-
-Paragraph source: [ChatGPT: five priorities for research](https://www.nature.com/articles/d41586-023-00288-7) 
-
----
-## Question Answering
-
-One of the best ways to get the model to respond to specific answers is to improve the format of the prompt. As covered before, a prompt could combine instructions, context, input, and output indicators to get improved results. While these components are not required, it becomes a good practice as the more specific you are with instruction, the better results you will get. Below is an example of how this would look following a more structured prompt.
+Voici un exemple de prompt qui extrait des informations d'un paragraphe donné.
 
 *Prompt:*
 ```
-Answer the question based on the context below. Keep the answer short and concise. Respond "Unsure about answer" if not sure about the answer.
+Les déclarations de contribution des auteurs et les remerciements dans les documents de recherche doivent indiquer clairement et spécifiquement si, et dans quelle mesure, les auteurs ont utilisé des technologies d'IA telles que ChatGPT dans la préparation de leur manuscrit et de leur analyse. Ils doivent également indiquer quels LLM ont été utilisés. Cela incitera les rédacteurs et les réviseurs à examiner plus attentivement les manuscrits pour y déceler des préjugés, des inexactitudes et des mentions de sources inappropriées. De même, les revues scientifiques doivent être transparentes quant à leur utilisation des LLM, par exemple lors de la sélection des manuscrits soumis.
 
-Context: Teplizumab traces its roots to a New Jersey drug company called Ortho Pharmaceutical. There, scientists generated an early version of the antibody, dubbed OKT3. Originally sourced from mice, the molecule was able to bind to the surface of T cells and limit their cell-killing potential. In 1986, it was approved to help prevent organ rejection after kidney transplants, making it the first therapeutic antibody allowed for human use.
-
-Question: What was OKT3 originally sourced from?
-
-Answer:
+Mentionnez le produit basé sur un grand modèle de langage mentionné dans le paragraphe ci-dessus :
 ```
 
-*Output:*
+*Sortie:*
 ```
-Mice.
+Le produit basé sur un grand modèle linguistique mentionné dans le paragraphe ci-dessus est ChatGPT.
 ```
 
-Context obtained from [Nature](https://www.nature.com/articles/d41586-023-00400-x).
+Il existe de nombreuses façons d'améliorer les résultats ci-dessus, mais ceux-ci sont déjà très utiles.
+
+Il devrait maintenant être évident que vous pouvez demander au modèle d'effectuer différentes tâches en lui indiquant simplement ce qu'il doit faire. Il s'agit d'une capacité puissante que les développeurs de produits d'IA utilisent déjà pour créer de puissants produits et expériences.
+
+
+Source du paragraphe : [ChatGPT : cinq priorités pour la recherche](https://www.nature.com/articles/d41586-023-00288-7) 
 
 ---
 
-## Text Classification
-So far, we have used simple instructions to perform a task. As a prompt engineer, you will need to get better at providing better instructions. But that's not all! You will also find that for harder use cases, just providing instructions won't be enough. This is where you need to think more about the context and the different elements you can use in a prompt. Other elements you can provide are `input data` or `examples`. 
+## Réponse aux questions
 
-Let's try to demonstrate this by providing an example of text classification.
+L'un des meilleurs moyens d'amener le modèle à répondre à des questions spécifiques est d'améliorer le prompt. Comme nous l'avons vu précédemment, un prompt peut combiner des instructions, un contexte, des indicateurs d'entrée et de sortie afin d'améliorer les résultats. Bien que ces éléments ne soient pas obligatoires, il s'agit d'une bonne pratique, car plus les instructions sont précises, meilleurs sont les résultats. Voici un exemple de ce que cela donnerait avec un prompt plus structuré.
 
 *Prompt:*
 ```
-Classify the text into neutral, negative or positive. 
+Répondez à la question en vous basant sur le contexte ci-dessous. La réponse doit être courte et concise. Répondez "Incertain de la réponse" si vous n'êtes pas sûr de la réponse.
 
-Text: I think the food was okay. 
-Sentiment:
+Contexte : Les origines du Teplizumab remontent à une société pharmaceutique du New Jersey, Ortho Pharmaceutical. Les scientifiques y ont produit une première version de l'anticorps, baptisée OKT3. Provenant à l'origine de souris, la molécule était capable de se lier à la surface des cellules T et de limiter leur potentiel de destruction cellulaire. En 1986, elle a été approuvée pour aider à prévenir le rejet d'organes après des greffes de rein, ce qui en a fait le premier anticorps thérapeutique autorisé à être utilisé chez l'homme.
+
+Question : D'où vient l'OKT3 à l'origine ?
+
+Réponse :
 ```
 
 *Output:*
 ```
-Neutral
+Souris.
 ```
 
-We gave the instruction to classify the text and the model responded with `'Neutral'` which is correct. Nothing is wrong with this but let's say that what we really need is for the model to give the label in the exact format we want. So instead of `Neutral` we want it to return `neutral`. How do we achieve this? There are different ways to do this. We care about specificity here, so the more information we can provide the prompt the better results. We can try providing examples to specify the correct behavior. Let's try again:
+Contexte obtenu à partir de [Nature](https://www.nature.com/articles/d41586-023-00400-x).
+
+---
+
+## Classification de textes
+Jusqu'à présent, nous avons utilisé des instructions simples pour effectuer une tâche. En tant qu'ingénieur de prompt (TODO), vous devrez vous améliorer pour fournir de meilleurs prompts. Mais ce n'est pas tout ! Vous constaterez également que pour des cas d'utilisation plus difficiles, il ne suffit pas de fournir des instructions. C'est là que vous devrez réfléchir davantage au contexte et aux différents éléments que vous pouvez utiliser dans un prompt. D'autres éléments que vous pouvez fournir sont les `données d'entrée` ou les `exemples`. 
+
+Essayons de démontrer ceci en fournissant un exemple de classification de texte.
 
 *Prompt:*
 ```
-Classify the text into neutral, negative or positive. 
+Classez le texte en neutre, négatif ou positif. 
 
-Text: I think the vacation is okay.
-Sentiment: neutral 
-
-Text: I think the food was okay. 
-Sentiment:
+Texte : Je pense que la nourriture était bonne. 
+Sentiment :
 ```
 
 *Output:*
 ```
-neutral
+Neutre
 ```
 
-Perfect! This time the model returned `neutral` which is the specific label I was looking for. It seems that the example provided in the prompt helped the model to be specific in its output. To highlight why sometimes being specific is important, check out this example and spot the problem:
+Nous avons donné l'instruction de classer le texte et le modèle a répondu "Neutre", ce qui est correct. Il n'y a rien de mal à cela, mais disons que ce dont nous avons vraiment besoin, c'est que le modèle donne l'étiquette dans le format exact que nous voulons. Ainsi, au lieu de `Neutral`, nous voulons qu'il renvoie `neutral`. Comment y parvenir ? Il y a plusieurs façons de le faire. Nous nous intéressons ici à la spécificité, donc plus nous pouvons fournir d'informations au prompt, meilleurs seront les résultats. Nous pouvons essayer de fournir des exemples pour spécifier le comportement correct. Essayons à nouveau :
 
 *Prompt:*
 ```
-Classify the text into nutral, negative or positive. 
+Classez le texte en neutre, négatif ou positif. 
 
-Text: I think the vacation is okay.
-Sentiment:
+Texte : Je pense que les vacances sont bonnes.
+Sentiment : neutre 
+
+Texte : Je pense que la nourriture était bonne. 
+Sentiment :
 ```
 
 *Output:*
 ```
-Neutral
+neutre
 ```
 
-What is the problem here?
+C'est parfait ! Cette fois-ci, le modèle a retourné `neutral`, ce qui est l'étiquette spécifique que je recherchais. Il semble que l'exemple fourni dans le prompt ait aidé le modèle à être spécifique dans sa sortie/son output (TODO). Pour comprendre pourquoi il est parfois important d'être précis, regardez cet exemple et repérez le problème :
+
+*Prompt:*
+```
+Classez le texte dans les catégories suivantes : neutre, négatif ou positif. 
+
+Texte : Je pense que les vacances sont bonnes.
+Sentiment :
+```
+
+*Output:*
+```
+Neutre
+```
+
+Quel est le problème ?
 
 ---
 
 ## Conversation
-Perhaps one of the more interesting things you can achieve with prompt engineering is instructing the LLM system on how to behave, its intent, and its identity. This is particularly useful when you are building conversational systems like customer service chatbots.
+L'une des choses les plus intéressantes que vous puissiez réaliser avec l'ingénierie de prompt/prompt engineering (TODO) est d'indiquer au système LLM comment se comporter, son intention et son identité. Ceci est particulièrement utile lorsque vous construisez des systèmes conversationnels comme les chatbots du service client.
 
-For instance, let's create a conversational system that's able to generate more technical and scientific responses to questions. Note how we are explicitly telling it how to behave through the instruction. This is sometimes referred to as *role prompting*.
+Par exemple, créons un système conversationnel capable de générer des réponses plus techniques et scientifiques aux questions. Remarquez que nous lui indiquons explicitement comment se comporter par le biais de l'instruction. C'est ce que l'on appelle parfois "l'incitation au rôle/role prompting" (TODO).
 
 *Prompt:*
 ```
-The following is a conversation with an AI research assistant. The assistant tone is technical and scientific.
+Voici une conversation avec un assistant de recherche de l'IA. Le ton de l'assistant est technique et scientifique.
 
-Human: Hello, who are you?
-AI: Greeting! I am an AI research assistant. How can I help you today?
-Human: Can you tell me about the creation of blackholes?
-AI:
+Humain : Bonjour, qui êtes-vous ?
+IA : Bonjour ! Je suis un assistant de recherche en IA. Comment puis-je vous aider aujourd'hui ?
+L'homme : Pouvez-vous me parler de la création des trous noirs ?
+L'IA :
 ```
 
 *Output:*
 ```
-Sure! Black holes are regions of spacetime where the gravitational force is so strong that nothing, not even light, can escape from it. They are created when a very massive star dies and its core collapses in on itself, forming a singularity of infinite density. The intense gravity of the singularity pulls in all the matter and radiation around it, creating the black hole.
+Bien sûr ! Les trous noirs sont des régions de l'espace-temps où la force gravitationnelle est si forte que rien, pas même la lumière, ne peut s'en échapper. Ils sont créés lorsqu'une étoile très massive meurt et que son noyau s'effondre sur lui-même, formant une singularité de densité infinie. La gravité intense de la singularité aspire toute la matière et le rayonnement qui l'entourent, créant ainsi le trou noir.
 ```
 
-Our AI research assistant sounds a bit too technical, right? Okay, let's change this behavior and instruct the system to give more accessible answers. 
+Notre assistant de recherche en IA semble un peu trop technique, n'est-ce pas ? D'accord, modifions ce comportement et demandons au système de donner des réponses plus accessibles. 
 
 *Prompt:*
 ```
-The following is a conversation with an AI research assistant. The assistant answers should be easy to understand even by primary school students.
+Ce qui suit est une conversation avec un assistant de recherche IA. Les réponses de l'assistant devraient être faciles à comprendre, même par des élèves de l'école primaire.
 
-Human: Hello, who are you?
-AI: Greeting! I am an AI research assistant. How can I help you today?
-Human: Can you tell me about the creation of black holes?
-AI: 
+Humain : Bonjour, qui êtes-vous ?
+IA : Bonjour ! Je suis un assistant de recherche en IA. Comment puis-je vous aider aujourd'hui ?
+L'homme : Pouvez-vous me parler de la création des trous noirs ?
+L'IA : 
 ```
 
 *Output:*
 ```
-Sure! Black holes are created when a very massive star runs out of fuel and collapses in on itself. The gravity of the star is so strong that nothing, not even light, can escape its pull. This creates a point in space-time with an intense gravitational force called a black hole.
+Bien sûr ! Les trous noirs sont créés lorsqu'une étoile très massive manque de carburant et s'effondre sur elle-même. La gravité de l'étoile est si forte que rien, pas même la lumière, ne peut échapper à son attraction. Cela crée un point dans l'espace-temps avec une force gravitationnelle intense, appelé trou noir.
 ```
 
-I think we made some progress. You can continue improving it. I am sure if you add more examples you might get even better results. 
+Je pense que nous avons fait des progrès. Vous pouvez continuer à l'améliorer. Je suis sûr que si vous ajoutez d'autres exemples, vous obtiendrez de meilleurs résultats. 
 
 ---
 
-## Code Generation
-One application where LLMs are quite effective is code generation. Copilot is a great example of this. There are a vast number of code-generation tasks you can perform with clever prompts. Let's look at a few examples below.
+## Génération de code
+Une application où les LLMs sont très efficaces est la génération de code. Copilot en est un excellent exemple. Il existe un grand nombre de tâches de génération de code que vous pouvez effectuer avec des prompts intelligents. Voyons quelques exemples ci-dessous.
 
-First, let's try a simple program that greets the user.
+Tout d'abord, essayons un programme simple qui accueille l'utilisateur.
 
 *Prompt:*
 ```
 /*
-Ask the user for their name and say "Hello"
+Demander à l'utilisateur son nom et dire "Hello"
 */
 ```
 
 *Output:*
 ```
-let name = prompt("What is your name?");
-console.log(`Hello, ${name}!`);
+let name = prompt("Quel est votre nom ?") ;
+console.log(`Bonjour, ${nom}!`) ;
 ```
 
-You can see that we didn't even need to specify the language to use.
+Vous pouvez voir que nous n'avons même pas eu besoin de spécifier la langue à utiliser.
 
-Let's switch levels a bit. I want to show you how powerful LLMs can be with a little more effort in designing the prompts.
+Changeons un peu de niveau. Je veux vous montrer à quel point les LLMs peuvent être puissants avec un peu plus d'effort dans la conception des prompts.
 
 *Prompt:*
 ```
 """
 Table departments, columns = [DepartmentId, DepartmentName]
 Table students, columns = [DepartmentId, StudentId, StudentName]
-Create a MySQL query for all students in the Computer Science Department
+Créer une requête MySQL pour tous les étudiants du département d'informatique
 """
 ```
 
@@ -232,18 +233,19 @@ FROM students
 WHERE DepartmentId IN (SELECT DepartmentId FROM departments WHERE DepartmentName = 'Computer Science');
 ```
 
-This is very impressive. In this case, we provided data about the database schema and asked it to generate a valid MySQL query. 
+C'est très impressionnant. Dans ce cas, nous avons fourni des données sur le schéma de la base de données et nous lui avons demandé de générer une requête MySQL valide. 
 
 ---
 
-## Reasoning
-Perhaps one of the most difficult tasks for an LLM today is one that requires some form of reasoning. Reasoning is one of the areas that I am most excited about due to the types of complex applications that can emerge from LLMs.
+## Raisonnement
 
-There have been some improvements in tasks involving mathematical capabilities. That said, it's important to note that current LLMs struggle to perform reasoning tasks so this requires even more advanced prompt engineering techniques. We will cover these advanced techniques in the next guide. For now, we will cover a few basic examples to show arithmetic capabilities.
+L'une des tâches les plus difficiles pour un LLM aujourd'hui est peut-être celle qui nécessite une certaine forme de raisonnement. Le raisonnement est l'un des domaines qui me passionne le plus en raison des types d'applications complexes qui peuvent émerger des LLMs.
+
+Des améliorations ont été apportées aux tâches impliquant des capacités mathématiques. Cela dit, il est important de noter que les LLMs actuels ont du mal à effectuer des tâches de raisonnement, ce qui nécessite des techniques de prompt engineering encore plus avancées. Nous aborderons ces techniques avancées dans le prochain guide. Pour l'instant, nous allons couvrir quelques exemples de base pour montrer les capacités arithmétiques.
 
 *Prompt:*
 ```
-What is 9,000 * 9,000?
+Qu'est-ce que 9 000 * 9 000 ?
 ```
 
 *Output:*
@@ -251,38 +253,38 @@ What is 9,000 * 9,000?
 81,000,000
 ```
 
-Let's try something more difficult. 
+Essayons quelque chose de plus difficile. 
 
 *Prompt:*
 ```
-The odd numbers in this group add up to an even number: 15, 32, 5, 13, 82, 7, 1. 
+Les nombres impairs de ce groupe s'additionnent pour donner un nombre pair : 15, 32, 5, 13, 82, 7, 1. 
 
-A: 
+A : 
 ```
 
 *Output*
 ```
-No, the odd numbers in this group add up to an odd number: 119.
+Non, la somme des nombres impairs de ce groupe est un nombre impair : 119.
 ```
 
-That's incorrect! Let's try to improve this by improving the prompt.
+Ce n'est pas correct ! Essayons d'améliorer cela en améliorant le prompt.
 
 *Prompt:*
 ```
-The odd numbers in this group add up to an even number: 15, 32, 5, 13, 82, 7, 1. 
+Les nombres impairs de ce groupe s'additionnent pour donner un nombre pair : 15, 32, 5, 13, 82, 7, 1. 
 
-Solve by breaking the problem into steps. First, identify the odd numbers, add them, and indicate whether the result is odd or even. 
+Résolvez le problème en le divisant en plusieurs étapes. D'abord, identifiez les nombres impairs, additionnez-les et indiquez si le résultat est pair ou impair. 
 ```
 
 *Output:*
 ```
-Odd numbers: 15, 5, 13, 7, 1
-Sum: 41 
-41 is an odd number.
+Nombres impairs : 15, 5, 13, 7, 1
+Somme : 41 
+41 est un nombre impair.
 ```
 
-Much better, right? By the way, I tried this a couple of times and the system sometimes fails. If you provide better instructions combined with examples, it might help get more accurate results.
+C'est beaucoup mieux, non ? Au fait, j'ai essayé plusieurs fois et le système échoue parfois. Si vous donnez de meilleures instructions accompagnées d'exemples, vous obtiendrez peut-être des résultats plus précis.
 
-We will continue to include more examples of common applications in this section of the guide.
+Nous continuerons à inclure des exemples d'applications courantes dans cette section du guide.
 
-In the upcoming section, we will cover even more advanced prompt engineering concepts and techniques for improving performance on all these and more difficult tasks.
+Dans la prochaine section, nous aborderons des concepts et des techniques de prompt engineering encore plus avancés pour améliorer les performances de toutes ces tâches et d'autres plus difficiles.

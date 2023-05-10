@@ -1,0 +1,30 @@
+# Factualité
+
+Les LLMs ont tendance à générer des réponses qui semblent cohérentes et convaincantes mais qui peuvent parfois être inventées. L'amélioration des prompts peut aider le modèle à générer des réponses plus précises/factuelles et réduire la probabilité de générer des réponses incohérentes et inventées. 
+
+Voici quelques solutions possibles
+- fournir une vérité de base (par exemple, un paragraphe d'article connexe ou une entrée Wikipédia) dans le cadre du contexte afin de réduire la probabilité que le modèle produise un texte inventé.
+- configurer le modèle pour qu'il produise des réponses moins variées en diminuant les paramètres de probabilité et en lui demandant d'admettre (par exemple, "Je ne sais pas") lorsqu'il ne connaît pas la réponse. 
+- fournir dans le prompt une combinaison d'exemples de questions et de réponses qu'il pourrait connaître et ne pas connaître.
+
+Prenons un exemple simple :
+
+*Prompt:*
+```
+Q : Qu'est-ce qu'un atome ? 
+R : Un atome est une minuscule particule qui compose tout. 
+Q : Qui est Alvan Muntz ? 
+R : ? 
+Q : Qu'est-ce que le Kozar-09 ? 
+R : ? 
+Q : Combien de lunes Mars possède-t-elle ? 
+R : Deux, Phobos et Deimos. 
+Q : Qui est Neto Beto Roberto ?
+```
+
+*Output:*
+```
+R: ?
+```
+
+J'ai inventé le nom "Neto Beto Roberto", le modèle est donc correct dans ce cas. Essayez de modifier légèrement la question et voyez si vous pouvez la faire fonctionner. Il y a plusieurs façons d'améliorer ce modèle en fonction de tout ce que vous avez appris jusqu'à présent.

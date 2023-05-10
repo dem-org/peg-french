@@ -5,13 +5,13 @@
   "applications": "Applications",
   "models": "Modèles",
   "risks": "Risques",
-  "papers": "Papers",
-  "tools": "Tools",
-  "notebooks": "Notebooks",
-  "datasets": "Datasets",
-  "readings": "Additional Readings",
+  "papers": "Documents",
+  "tools": "Outils",
+  "notebooks": "Carnets de notes",
+  "datasets": "Ensembles de données",
+  "readings": "Lectures complémentaires",
   "about": {
-    "title": "About",
+    "title": "A propos de nous",
     "type": "page"
   },
   "contact": {

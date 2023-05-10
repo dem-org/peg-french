@@ -1,0 +1,47 @@
+# Générer des données
+Les LLMs ont de fortes capacités à générer des textes cohérents. L'utilisation de stratégies de prompts efficaces peut amener le modèle à produire des réponses de meilleure qualité, plus cohérentes et plus factuelles. Les LLMs peuvent également être particulièrement utiles pour générer des données qui sont vraiment utiles pour effectuer toutes sortes d'expériences et d'évaluations. Par exemple, nous pouvons l'utiliser pour générer des échantillons rapides pour un classificateur de sentiments :
+
+*Prompt:*
+```
+Produire 10 exemples pour l'analyse des sentiments. 
+Les exemples sont classés comme positifs ou négatifs. 
+Produisez 2 exemples négatifs et 8 exemples positifs. 
+Utilisez ce format pour les exemples :
+Q: <phrase>
+R: <sentiment>
+```
+
+*Output:*
+```
+Q: Je viens d'apprendre la meilleure nouvelle qui soit !
+R: Positif
+
+Q: Nous venons d'être augmentés au travail !
+R: Positif
+
+Q: Je suis très fière de ce que j'ai accompli aujourd'hui.
+R: Positif
+
+Q: Je passe la meilleure journée de ma vie !
+R: Positif
+
+Q: J'ai vraiment hâte d'être à ce week-end.
+R: Positif
+
+Q: Je viens de recevoir le meilleur cadeau qui soit !
+R: Positif
+
+Q: Je suis tellement heureuse en ce moment.
+R: Positif
+
+Q: J'ai la chance d'avoir une famille aussi formidable.
+R: Positif
+
+Q: Le temps à l'extérieur est si maussade.
+R: Negatif
+
+Q: Je viens d'apprendre une terrible nouvelle.
+R: Negatif
+```
+
+Cet exemple est très utile. En fait, nous utilisons cet exemple pour un test différent dans une autre section des guides.

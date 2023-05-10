@@ -1,0 +1,111 @@
+# Few-Shot Prompting
+
+Bien que les LLMs démontrent des capacités de zero-shot remarquables, ils restent insuffisants pour les tâches plus complexes lorsqu'on utilise des paramètres zero-shot. Le few-shot prompting peut être utilisé comme technique pour permettre l'apprentissage en contexte où nous fournissons des démonstrations dans le prompt afin d'orienter le modèle vers de meilleures performances. Les démonstrations servent de conditionnement pour les exemples suivants dans lesquels nous aimerions que le modèle génère une réponse.
+
+D'après [Touvron et al. 2023](https://arxiv.org/pdf/2302.13971.pdf), les propriétés " few-shot " sont apparues pour la première fois lorsque les modèles ont été mis à l'échelle à une taille suffisante [(Kaplan et al., 2020)](https://arxiv.org/abs/2001.08361).
+
+Démontrons le few-shot prompting à l'aide d'un exemple présenté dans [Brown et al. 2020](https://arxiv.org/abs/2005.14165). Dans cet exemple, la tâche consiste à utiliser correctement un nouveau mot dans une phrase.
+
+*Prompt:*
+```
+Un "whatpu" est un petit animal à fourrure originaire de Tanzanie. 
+Voici un exemple de phrase qui utilise
+le mot "whatpu" est le suivant :
+Nous voyagions en Afrique et nous avons vu des whatpus très mignons.
+Faire un "farduddle" signifie sauter de haut en bas très rapidement. 
+Un exemple de phrase qui utilise le mot farduddle est :
+```
+
+*Output:*
+```
+Lorsque nous avons gagné le match, nous avons tous commencé à farduddler pour fêter l'événement.
+```
+
+Nous pouvons observer que le modèle a en quelque sorte appris à effectuer la tâche en ne lui fournissant qu'un seul exemple (c'est-à-dire, 1-shot). Pour les tâches plus difficiles, nous pouvons expérimenter en augmentant le nombre de démonstrations (par exemple, 3-shots, 5-shots, 10-shots, etc.).
+
+Conformément aux conclusions de [Min et al. (2022)] (https://arxiv.org/abs/2202.12837), voici quelques conseils supplémentaires concernant les démonstrations/exemplaires en faisant du few-shot :
+
+- l'espace des étiquettes et la distribution du texte d'entrée spécifié par les démonstrations sont tous deux importants (indépendamment du fait que les étiquettes soient correctes pour les entrées individuelles)"
+- le format utilisé joue également un rôle clé dans les performances, même si vous utilisez des étiquettes aléatoires, c'est beaucoup mieux que de ne pas avoir d'étiquettes du tout.  
+- Des résultats supplémentaires montrent que la sélection d'étiquettes aléatoires à partir d'une véritable distribution d'étiquettes (au lieu d'une distribution uniforme) est également utile.
+
+Essayons quelques exemples. Essayons d'abord un exemple avec des étiquettes aléatoires (ce qui signifie que les étiquettes Négatif et Positif sont attribuées de manière aléatoire aux entrées) :
+
+*Prompt:*
+```
+C'est génial ! // Négatif
+C'est mauvais ! // Positif
+Ce film était génial ! // Positif
+Quel spectacle horrible ! //
+```
+
+*Output:*
+```
+Négatif
+```
+
+Nous obtenons toujours la bonne réponse, même si les étiquettes ont été randomisées. Notez que nous avons également conservé le format, ce qui est également utile. En fait, avec d'autres expériences, il semble que les nouveaux modèles GPT que nous expérimentons deviennent plus robustes, même avec des formats aléatoires. Exemple :
+
+*Prompt:*
+```
+Positif C'est génial ! 
+C'est mauvais ! Négatif
+Ce film était génial !
+Positif
+Quel spectacle horrible ! --
+```
+
+*Output:*
+```
+Négatif
+```
+
+Le format ci-dessus n'est pas cohérent, mais le modèle a tout de même prédit l'étiquette correcte. Nous devons effectuer une analyse plus approfondie pour confirmer si cela est valable pour des tâches différentes et plus complexes, y compris différentes variations de prompts.
+
+
+### Limites du Few-shot Prompting
+
+Le few-shot prompting standard fonctionne bien pour de nombreuses tâches, mais ne constitue pas une technique parfaite, en particulier lorsqu'il s'agit de tâches de raisonnement plus complexes. Voyons pourquoi. Vous souvenez-vous de l'exemple précédent dans lequel nous avons proposé la tâche suivante :
+
+```
+Les nombres impairs de ce groupe s'additionnent pour former un nombre pair : 15, 32, 5, 13, 82, 7, 1. 
+
+A : 
+```
+
+Si nous essayons à nouveau, le modèle produit ce qui suit :
+
+```
+Oui, la somme des nombres impairs de ce groupe est égale à 107, qui est un nombre pair.
+```
+
+Ce n'est pas la bonne réponse, ce qui souligne non seulement les limites de ces systèmes, mais aussi la nécessité d'un prompt engineering (TODO) plus avancé. 
+
+Essayons d'ajouter quelques exemples pour voir si le few-shot prompting améliore les résultats.
+
+*Prompt:*
+```
+Les nombres impairs de ce groupe s'additionnent pour former un nombre pair : 4, 8, 9, 15, 12, 2, 1.
+A : La réponse est Faux.
+
+La somme des nombres impairs de ce groupe est égale à un nombre pair : 17, 10, 19, 4, 8, 12, 24.
+A : La réponse est Vrai.
+
+La somme des nombres impairs de ce groupe est égale à un nombre pair : 16, 11, 14, 4, 8, 13, 24.
+A : La réponse est Vrai.
+
+La somme des nombres impairs de ce groupe est égale à 17, 9, 10, 12, 13, 4, 2.
+A : La réponse est Faux.
+
+La somme des nombres impairs de ce groupe est égale à 15, 32, 5, 13, 82, 7, 1. 
+A : 
+```
+
+*Output:*
+```
+La réponse est Vrai.
+```
+
+Cela n'a pas fonctionné. Il semble que le few-shot prompting ne suffit pas à obtenir des réponses fiables pour ce type de problème de raisonnement. L'exemple ci-dessus fournit des informations de base sur la tâche. Si vous y regardez de plus près, le type de tâche que nous avons introduit implique quelques étapes de raisonnement supplémentaires. En d'autres termes, il pourrait être utile de décomposer le problème en étapes et de le démontrer au modèle. Plus récemment, [l'incitation à la chaîne de pensée (CoT)] (https://arxiv.org/abs/2201.11903) a été popularisée pour traiter des tâches arithmétiques, de bon sens et de raisonnement symbolique plus complexes.
+
+Dans l'ensemble, il semble que fournir des exemples soit utile pour résoudre certaines tâches. Lorsque le zero-shot prompting et lefew-shot prompting ne sont pas suffisants, cela peut signifier que ce qui a été appris par le modèle n'est pas suffisant pour réussir la tâche. À partir de là, il est recommandé de commencer à envisager de fine-tuning (TODO) vos modèles ou d'expérimenter des techniques de prompting plus avancées. Nous allons maintenant aborder l'une des techniques de prompting les plus populaires appelée chain-of-thought prompting qui a acquis une grande popularité.
